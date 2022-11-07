@@ -1,0 +1,58 @@
+[gd_scene load_steps=12 format=3 uid="uid://cnrl6h7i5b1v3"]
+
+[ext_resource type="Shader" path="res://src/scenes/grass/grass.gdshader" id="1_3aqo8"]
+[ext_resource type="Material" uid="uid://8qwwj030dotv" path="res://src/scenes/grass/grass_particles.tres" id="2_irgkx"]
+[ext_resource type="ArrayMesh" uid="uid://duwogxx8wmeth" path="res://src/scenes/grass/grass_triangle.obj" id="3_eumue"]
+[ext_resource type="Script" path="res://src/scenes/grass/grass_gpu_particles.gd" id="4_wmu2g"]
+
+[sub_resource type="Curve" id="Curve_1rqav"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sl4c2"]
+curve = SubResource("Curve_1rqav")
+
+[sub_resource type="Gradient" id="Gradient_uo4aq"]
+offsets = PackedFloat32Array(0.269592, 0.717868, 0.924765)
+colors = PackedColorArray(0, 0.32549, 0, 1, 0.13003, 0.553836, 0, 1, 0.321569, 0.890196, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pqqn2"]
+gradient = SubResource("Gradient_uo4aq")
+width = 128
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_laop7"]
+fractal_octaves = 8
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dwobm"]
+seamless = true
+noise = SubResource("FastNoiseLite_laop7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4uvdo"]
+render_priority = 0
+shader = ExtResource("1_3aqo8")
+shader_parameter/character_distance_falloff_curve = SubResource("CurveTexture_sl4c2")
+shader_parameter/character_position = null
+shader_parameter/character_push_strength = 1.0
+shader_parameter/character_radius = 3.0
+shader_parameter/color_ramp = SubResource("GradientTexture1D_pqqn2")
+shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
+shader_parameter/wind_noise = SubResource("NoiseTexture2D_dwobm")
+shader_parameter/wind_speed = 0.06
+shader_parameter/wind_strength = 2.0
+shader_parameter/wind_texture_tile_size = 20.0
+shader_parameter/wind_vertical_strength = 0.3
+
+[node name="Grass" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.58794e-08, 0)
+material_override = SubResource("ShaderMaterial_4uvdo")
+cast_shadow = 0
+amount = 10000
+speed_scale = 64.0
+explosiveness = 1.0
+fixed_fps = 0
+visibility_aabb = AABB(-3.3962e+38, -3.3434e+38, -3.39906e+38, inf, inf, inf)
+process_material = ExtResource("2_irgkx")
+draw_pass_1 = ExtResource("3_eumue")
+script = ExtResource("4_wmu2g")
+character_path = NodePath("..")

@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://tjxmc7cdv5l8"]
+
+[ext_resource type="Shader" path="res://src/scenes/lightning/lightning.gdshader" id="1_0drdk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6lvm"]
+render_priority = 0
+shader = ExtResource("1_0drdk")
+shader_parameter/bolt_angularity = 10.0
+shader_parameter/bolt_ends_affect = 1.0
+shader_parameter/bolt_modulation = 0.16
+shader_parameter/bolt_position = 0.5
+shader_parameter/cycle = 2.976
+shader_parameter/flash_ratio = 1.044
+shader_parameter/lightning_color = Color(0, 0.968627, 0.94902, 1)
+shader_parameter/size = 0.05
+shader_parameter/speed = 1.35
+shader_parameter/time_scale = 2.0
+shader_parameter/time_shift = 7.0
+shader_parameter/width = 0.105
+
+[sub_resource type="Gradient" id="Gradient_hhks2"]
+offsets = PackedFloat32Array(0, 0.445736)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rjxws"]
+gradient = SubResource("Gradient_hhks2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nn74i"]
+direction = Vector3(0, -1, 0)
+spread = 0.0
+gravity = Vector3(0, -2, 0)
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+color = Color(1, 1, 1, 0)
+color_ramp = SubResource("GradientTexture1D_rjxws")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_mmlip"]
+shape = 0
+size = 10.0
+section_length = 2.0
+
+[node name="Lightning" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8734, 46.706, 0)
+material_override = SubResource("ShaderMaterial_c6lvm")
+extra_cull_margin = 20.0
+amount = 1
+lifetime = 0.9
+speed_scale = 2.0
+trail_enabled = true
+trail_length_secs = 10.0
+process_material = SubResource("ParticleProcessMaterial_nn74i")
+draw_pass_1 = SubResource("RibbonTrailMesh_mmlip")

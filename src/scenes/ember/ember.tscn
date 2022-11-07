@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b15f5n7igewgg"]
+
+[ext_resource type="Material" uid="uid://d3yoiullg0ljl" path="res://src/scenes/ember/fire_ember_particles.tres" id="1_wiy0s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0mis"]
+emission_enabled = true
+emission = Color(1, 0.364706, 0, 1)
+refraction_enabled = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jva2q"]
+material = SubResource("StandardMaterial3D_y0mis")
+size = Vector2(0.025, 0.025)
+orientation = 2
+
+[node name="Ember" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.522516, 0)
+cast_shadow = 0
+amount = 32
+speed_scale = 0.8
+randomness = 1.0
+visibility_aabb = AABB(-0.479981, -0.0300315, -0.474837, 0.917732, 2.42193, 1.0803)
+draw_order = 1
+process_material = ExtResource("1_wiy0s")
+draw_pass_1 = SubResource("PlaneMesh_jva2q")

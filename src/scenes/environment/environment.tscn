@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuspgeur025b7"]
+
+[ext_resource type="Script" path="res://src/scenes/environment/SkyShader/Main.gd" id="1_lxava"]
+[ext_resource type="Material" uid="uid://cn2tqhh2f7m85" path="res://src/scenes/environment/SkyShader/StylizedSkyMaterial.tres" id="2_tr2qs"]
+
+[sub_resource type="Sky" id="Sky_jq8uw"]
+sky_material = ExtResource("2_tr2qs")
+
+[sub_resource type="Environment" id="Environment_jwe7i"]
+background_mode = 2
+sky = SubResource("Sky_jq8uw")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+ssr_enabled = true
+ssao_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_normalized = true
+glow_strength = 0.3
+glow_bloom = 0.1
+fog_sky_affect = 0.073
+fog_height = 2.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.005
+volumetric_fog_anisotropy = 0.9
+volumetric_fog_ambient_inject = 5.0
+volumetric_fog_sky_affect = 0.4
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.2
+
+[sub_resource type="Animation" id="Animation_pj32p"]
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.13977, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bsq5n"]
+resource_name = "sunriseset"
+length = 60.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-2.13977, 0, 0), Vector3(4.08756, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xpn0a"]
+_data = {
+"RESET": SubResource("Animation_pj32p"),
+"sunriseset": SubResource("Animation_bsq5n")
+}
+
+[node name="Environment" type="Node3D"]
+script = ExtResource("1_lxava")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jwe7i")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.538768, 0.842454, 0, -0.842454, -0.538768, 0, 5.58819, 1.31604)
+shadow_enabled = true
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 400.0
+directional_shadow_pancake_size = 40.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xpn0a")
+}

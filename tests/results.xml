@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<testsuites failures="0" name="TestXML" tests="5" time="0">
+	<testsuite name="Util" failures="0"  tests="9" time="0">
+		<testcase name=" rounded halved int" time="0"></testcase>
+		<testcase name=" even to odd int" time="0"></testcase>
+		<testcase name=" array contains" time="0"></testcase>
+		<testcase name=" get time" time="0"></testcase>
+		<testcase name=" unique int set" time="0"></testcase>
+		<testcase name=" chance to fail" time="0"></testcase>
+		<testcase name=" bisect odd int" time="0"></testcase>
+		<testcase name=" rounded halved vector2" time="0"></testcase>
+		<testcase name=" get random int" time="0"></testcase>
+	</testsuite>
+
+	<testsuite name="Direction" failures="0"  tests="28" time="0">
+		<testcase name=" southwest name" time="0"></testcase>
+		<testcase name=" northwest name" time="0"></testcase>
+		<testcase name=" southeast" time="0"></testcase>
+		<testcase name=" none" time="0"></testcase>
+		<testcase name=" northeast name" time="0"></testcase>
+		<testcase name=" cardinal direction names" time="0"></testcase>
+		<testcase name=" west name" time="0"></testcase>
+		<testcase name=" south" time="0"></testcase>
+		<testcase name=" south name" time="0"></testcase>
+		<testcase name=" west" time="0"></testcase>
+		<testcase name=" cardinal directions" time="0"></testcase>
+		<testcase name=" northwest" time="0"></testcase>
+		<testcase name=" north name" time="0"></testcase>
+		<testcase name=" northeast" time="0"></testcase>
+		<testcase name=" y" time="0"></testcase>
+		<testcase name=" ordinal directions" time="0"></testcase>
+		<testcase name=" southwest" time="0"></testcase>
+		<testcase name=" east name" time="0"></testcase>
+		<testcase name=" get coordinate type from direction" time="0"></testcase>
+		<testcase name=" get opposite coordinate type from direction" time="0"></testcase>
+		<testcase name=" north" time="0"></testcase>
+		<testcase name=" ordinal direction names" time="0"></testcase>
+		<testcase name=" add or subtract from cardinal direction" time="0"></testcase>
+		<testcase name=" get opposite direction names from direction" time="0"></testcase>
+		<testcase name=" southeast name" time="0"></testcase>
+		<testcase name=" east" time="0"></testcase>
+		<testcase name=" x" time="0"></testcase>
+		<testcase name=" get bounds" time="0"></testcase>
+	</testsuite>
+
+	<testsuite name="Door" failures="0"  tests="6" time="0">
+		<testcase name=" get wall centroid" time="0"></testcase>
+		<testcase name=" randomize wall centroid" time="0"></testcase>
+		<testcase name=" create door segments" time="0"></testcase>
+		<testcase name=" create door dimensions" time="0"></testcase>
+		<testcase name=" get id" time="0"></testcase>
+		<testcase name=" get door centroid" time="0"></testcase>
+	</testsuite>
+
+	<testsuite name="Room" failures="0"  tests="4" time="0">
+		<testcase name=" create room dimension" time="0"></testcase>
+		<testcase name=" create room segments" time="0"></testcase>
+		<testcase name=" get id" time="0"></testcase>
+		<testcase name=" create room dimensions" time="0"></testcase>
+	</testsuite>
+
+	<testsuite name="Level" failures="0"  tests="2" time="0">
+		<testcase name=" get initial centroid" time="0"></testcase>
+		<testcase name=" initialize data structure" time="0"></testcase>
+	</testsuite>
+
+</testsuites>

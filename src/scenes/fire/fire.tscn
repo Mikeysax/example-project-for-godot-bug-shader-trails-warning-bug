@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://45ouhfkb57er"]
+
+[ext_resource type="Shader" path="res://src/scenes/fire/fire.gdshader" id="1_yw5d8"]
+[ext_resource type="Texture2D" uid="uid://b2usbp0rnu8x0" path="res://src/scenes/fire/HoleNoise.png" id="2_m433u"]
+[ext_resource type="Texture2D" uid="uid://n8gwt4n8ul2g" path="res://src/scenes/fire/FireMask.png" id="3_brep0"]
+[ext_resource type="PackedScene" uid="uid://b15f5n7igewgg" path="res://src/scenes/ember/ember.tscn" id="4_tm8i1"]
+[ext_resource type="Material" uid="uid://c4j72ix46y5hm" path="res://src/scenes/fire/fire_particles.tres" id="4_x7gjs"]
+[ext_resource type="PackedScene" uid="uid://d32wdavdjrn1r" path="res://src/scenes/smoke/smoke.tscn" id="5_hx1yb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2laaf"]
+render_priority = 0
+shader = ExtResource("1_yw5d8")
+shader_parameter/edge_softness = 0.2
+shader_parameter/emission_intensity = 1.5
+shader_parameter/noise_texture = ExtResource("2_m433u")
+shader_parameter/texture_mask = ExtResource("3_brep0")
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/time_scale = 3.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_jx1xl"]
+
+[node name="Fire" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95946, 1.65584, 4.02084)
+material_override = SubResource("ShaderMaterial_2laaf")
+cast_shadow = 0
+amount = 50
+randomness = 0.5
+visibility_aabb = AABB(-1.39012, -1.00001, -1.81894, 3.44254, 4.69349, 3.35608)
+draw_order = 1
+process_material = ExtResource("4_x7gjs")
+draw_pass_1 = SubResource("QuadMesh_jx1xl")
+
+[node name="OmniLight3d" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.760784, 0.560784, 1)
+light_energy = 2.0
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="Ember" parent="." instance=ExtResource("4_tm8i1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144955, 0)
+
+[node name="Smoke" parent="." instance=ExtResource("5_hx1yb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0334446, 0)
+visibility_aabb = AABB(-2.53238, -2.19931, -2.35694, 5.0315, 6.76101, 4.82371)

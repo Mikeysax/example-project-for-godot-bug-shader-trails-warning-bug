@@ -1,0 +1,100 @@
+[gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://cukm83ls0l8vr"]
+
+[ext_resource type="Shader" path="res://src/scenes/water/water.gdshader" id="1_gi8ed"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dtqx1"]
+noise_type = 2
+frequency = 0.05
+fractal_type = 0
+cellular_distance_function = 1
+cellular_jitter = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vmtd1"]
+in_3d_space = true
+seamless = true
+noise = SubResource("FastNoiseLite_dtqx1")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bve07"]
+noise_type = 2
+fractal_type = 3
+fractal_gain = 2.0
+cellular_distance_function = 1
+cellular_jitter = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_erpjb"]
+width = 2048
+height = 2048
+seamless = true
+noise = SubResource("FastNoiseLite_bve07")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wlp18"]
+noise_type = 2
+seed = 4
+frequency = 0.05
+fractal_type = 0
+cellular_distance_function = 1
+cellular_jitter = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8gdhj"]
+seamless = true
+as_normal_map = true
+bump_strength = 0.2
+noise = SubResource("FastNoiseLite_wlp18")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qd2jy"]
+noise_type = 2
+seed = 3
+frequency = 0.05
+fractal_type = 0
+cellular_distance_function = 1
+cellular_jitter = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h3n8t"]
+seamless = true
+as_normal_map = true
+bump_strength = 0.1
+noise = SubResource("FastNoiseLite_qd2jy")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_22lnh"]
+noise_type = 2
+seed = 2
+fractal_type = 0
+cellular_distance_function = 1
+cellular_jitter = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qyjx4"]
+seamless = true
+noise = SubResource("FastNoiseLite_22lnh")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_gi8ed")
+shader_parameter/_distance = 10.0
+shader_parameter/base_noise_texture = SubResource("NoiseTexture2D_vmtd1")
+shader_parameter/beer_law_factor = 2.0
+shader_parameter/color = Color(0.04, 0.56, 1, 1)
+shader_parameter/deep_water = Color(0.04, 0.43, 1, 1)
+shader_parameter/displacement_amount = 0.01
+shader_parameter/displacement_modulation = 0.0
+shader_parameter/edge_color = Color(1, 1, 1, 1)
+shader_parameter/edge_scale = 0.5
+shader_parameter/far = 400.0
+shader_parameter/foam_modulation = 0.5
+shader_parameter/foam_noise_texture = SubResource("NoiseTexture2D_erpjb")
+shader_parameter/foam_speed = 0.025
+shader_parameter/metallic = 0.5
+shader_parameter/near = 0.5
+shader_parameter/normalmap = SubResource("NoiseTexture2D_8gdhj")
+shader_parameter/normalmap2 = SubResource("NoiseTexture2D_h3n8t")
+shader_parameter/normalmap_blend = 0.25
+shader_parameter/rim = 0.1
+shader_parameter/ripple_speed = 0.543
+shader_parameter/roughness = 0.5
+shader_parameter/specular = 0.2
+shader_parameter/speed = 0.001
+shader_parameter/speed2 = -0.001
+shader_parameter/time_factor = Vector2(1, 2)
+shader_parameter/water_noise_blend = 1.5
+shader_parameter/water_noise_texture = SubResource("NoiseTexture2D_qyjx4")
+shader_parameter/wave_frequency = Vector3(12, 12, 30)
+shader_parameter/wave_strength = Vector3(0.025, 0.025, 0.025)

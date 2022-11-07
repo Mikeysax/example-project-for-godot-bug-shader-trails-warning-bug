@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Shader" uid="uid://c3sodltfek7b1" path="res://src/scenes/water/water2-test/water2.tres" id="1_5il3d"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nsp2w"]
+noise_type = 2
+seed = 1
+fractal_type = 0
+cellular_distance_function = 1
+cellular_jitter = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ju3p6"]
+seamless = true
+noise = SubResource("FastNoiseLite_nsp2w")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4ge2i"]
+noise_type = 2
+fractal_type = 0
+cellular_distance_function = 1
+cellular_jitter = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u78ej"]
+seamless = true
+noise = SubResource("FastNoiseLite_4ge2i")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ksjyc"]
+render_priority = 0
+shader = ExtResource("1_5il3d")
+shader_parameter/Beer_Distance = 4.0
+shader_parameter/Beer_Law_Factor = 3.0
+shader_parameter/Far = null
+shader_parameter/Near = null
+shader_parameter/Time_Scale = 0.1
+shader_parameter/Time_Scale2 = -0.1
+shader_parameter/Water_Alpha = 1.0
+shader_parameter/Water_Color = Color(0.0392157, 0.513726, 1, 1)
+shader_parameter/Water_Deep_Color = Color(0.0392157, 0.243137, 1, 1)
+shader_parameter/Water_Noise_Blend = 1.25
+shader_parameter/Water_Roughness = 0.0
+shader_parameter/Wave_Noise_Texture = SubResource("NoiseTexture2D_ju3p6")
+shader_parameter/Wave_Noise_Texture_2 = SubResource("NoiseTexture2D_u78ej")
+shader_parameter/Wave_Scale = 0.1
+shader_parameter/Wave_Strength = 0.3
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dpbwf"]
+material = SubResource("ShaderMaterial_ksjyc")
+size = Vector2(20, 20)
+subdivide_width = 100
+subdivide_depth = 100
+
+[node name="Water2" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37622, 0.474074, 0.427989)
+visible = false
+mesh = SubResource("PlaneMesh_dpbwf")
+skeleton = NodePath("../Water")

@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d3rcl658u8yhg"]
+
+[ext_resource type="Texture2D" uid="uid://q1t0g0oevd3k" path="res://assets/palettes/apollo-32x.png" id="1"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("1")
+roughness = 0.0
+rim_enabled = true
+rim = 0.05
+anisotropy = 1.0
+subsurf_scatter_strength = 0.08

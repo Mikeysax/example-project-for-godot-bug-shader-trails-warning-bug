@@ -1,0 +1,37 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=8 format=3 uid="uid://bkd2fgchbkohn"]
+
+[sub_resource type="AnimationNodeAnimation" id="3"]
+animation = &"Player/Idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="4"]
+
+[sub_resource type="AnimationNodeBlend3" id="5"]
+
+[sub_resource type="AnimationNodeAnimation" id="6"]
+animation = &"Player/Run"
+
+[sub_resource type="AnimationNodeTimeScale" id="7"]
+
+[sub_resource type="AnimationNodeAnimation" id="9"]
+animation = &"Player/Walk"
+
+[sub_resource type="AnimationNodeTimeScale" id="10"]
+
+[resource]
+graph_offset = Vector2(-628.096, 318.792)
+nodes/idle_anim/node = SubResource("3")
+nodes/idle_anim/position = Vector2(-300, 360)
+nodes/idle_scale/node = SubResource("4")
+nodes/idle_scale/position = Vector2(-100, 340)
+nodes/iwr_blend/node = SubResource("5")
+nodes/iwr_blend/position = Vector2(110, 420)
+nodes/output/position = Vector2(320, 420)
+nodes/run_anim/node = SubResource("6")
+nodes/run_anim/position = Vector2(-300, 600)
+nodes/run_scale/node = SubResource("7")
+nodes/run_scale/position = Vector2(-100, 600)
+nodes/walk_anim/node = SubResource("9")
+nodes/walk_anim/position = Vector2(-300, 480)
+nodes/walk_scale/node = SubResource("10")
+nodes/walk_scale/position = Vector2(-100, 470)
+node_connections = [&"output", 0, &"iwr_blend", &"idle_scale", 0, &"idle_anim", &"iwr_blend", 0, &"idle_scale", &"iwr_blend", 1, &"walk_scale", &"iwr_blend", 2, &"run_scale", &"run_scale", 0, &"run_anim", &"walk_scale", 0, &"walk_anim"]

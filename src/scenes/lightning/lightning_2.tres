@@ -1,0 +1,7 @@
+[gd_resource type="VisualShader" format=3 uid="uid://bo7ye58yk7oo8"]
+
+[resource]
+code = "shader_type spatial;
+
+
+"

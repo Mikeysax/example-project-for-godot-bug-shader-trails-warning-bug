@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://d32wdavdjrn1r"]
+
+[ext_resource type="Shader" path="res://src/scenes/smoke/smoke.gdshader" id="1_mot5p"]
+[ext_resource type="Texture2D" uid="uid://c04javb2y530f" path="res://src/scenes/smoke/FireMask.png" id="2_dcmts"]
+[ext_resource type="Material" uid="uid://bnlayiealhvev" path="res://src/scenes/smoke/fire_smoke_particles.tres" id="3_1t13v"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1k0pq"]
+noise_type = 2
+seed = 2
+fractal_type = 0
+cellular_distance_function = 1
+cellular_jitter = 1.0
+domain_warp_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j6rln"]
+width = 256
+height = 256
+invert = true
+in_3d_space = true
+seamless = true
+noise = SubResource("FastNoiseLite_1k0pq")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oscbt"]
+noise_type = 2
+seed = 2
+fractal_type = 0
+cellular_distance_function = 1
+cellular_jitter = 1.0
+domain_warp_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_iahil"]
+width = 256
+height = 256
+in_3d_space = true
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_oscbt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y8bb3"]
+render_priority = 0
+shader = ExtResource("1_mot5p")
+shader_parameter/edge_softness = 0.115
+shader_parameter/emission_intensity = 0.05
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_j6rln")
+shader_parameter/normalmap_texture = SubResource("NoiseTexture2D_iahil")
+shader_parameter/texture_mask = ExtResource("2_dcmts")
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/time_scale = 2.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ulxvb"]
+orientation = 2
+
+[node name="Smoke" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.164046, 0)
+material_override = SubResource("ShaderMaterial_y8bb3")
+cast_shadow = 2
+gi_mode = 2
+amount = 50
+lifetime = 1.5
+speed_scale = 0.6
+explosiveness = 0.05
+randomness = 1.0
+visibility_aabb = AABB(-2.62456, -2.00563, -2.70117, 5.21498, 11.2624, 5.59161)
+process_material = ExtResource("3_1t13v")
+draw_pass_1 = SubResource("PlaneMesh_ulxvb")

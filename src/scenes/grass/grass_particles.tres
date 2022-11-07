@@ -1,0 +1,56 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://8qwwj030dotv"]
+
+[ext_resource type="Shader" path="res://src/scenes/grass/foliage_particle_shader.gdshader" id="1_5p5ca"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wb3pe"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7bh0a"]
+width = 2048
+height = 2048
+noise = SubResource("FastNoiseLite_wb3pe")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i5if0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hd02x"]
+width = 2048
+height = 2048
+seamless = true
+noise = SubResource("FastNoiseLite_i5if0")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_p1la7"]
+noise_type = 2
+cellular_distance_function = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6b1vi"]
+width = 2048
+height = 2048
+seamless = true
+as_normal_map = true
+bump_strength = 12.4
+noise = SubResource("FastNoiseLite_p1la7")
+
+[resource]
+shader = ExtResource("1_5p5ca")
+shader_parameter/__terrain_amplitude = 0.0
+shader_parameter/_coverage_altitude = 10.0
+shader_parameter/_coverage_range = 100.0
+shader_parameter/_slope_coverage = 0.5
+shader_parameter/clumping_strength = 20.0
+shader_parameter/instance_orient_to_normal = true
+shader_parameter/instance_orientation_influence = 1.0
+shader_parameter/instance_pos_randomize = 2.0
+shader_parameter/instance_rot_randomize = 200.0
+shader_parameter/instance_rows = 100.0
+shader_parameter/instance_scale_max = 0.781
+shader_parameter/instance_scale_min = 0.126
+shader_parameter/instance_scale_randomize = 1.0
+shader_parameter/instance_scale_x = 0.741
+shader_parameter/instance_scale_y = 1.0
+shader_parameter/instance_scale_z = 1.0
+shader_parameter/instance_spacing = 0.095
+shader_parameter/map_clumpmap = SubResource("NoiseTexture2D_7bh0a")
+shader_parameter/map_heightmap = SubResource("NoiseTexture2D_hd02x")
+shader_parameter/map_heightmap_size = Vector2(2048, 2048)
+shader_parameter/map_normalmap = SubResource("NoiseTexture2D_6b1vi")
+shader_parameter/map_normalmap_size = Vector2(2048, 2048)
+shader_parameter/terrain_normal_basis = null
